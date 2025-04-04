@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collapsible Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            background: white;
+            height: 60px;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            border-bottom: 1px solid #eee;
+            padding: 0 20px;
+        }
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background: #f4f4f4;
+            overflow: hidden;
+            transition: width 0.3s ease;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .sidebar.collapsed {
+            width: 60px;
+        }
+        .sidebar img {
+            width: 70%;
+            height: 50px;
+            display: block;
+            margin: auto;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: black;
+            text-decoration: none;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        .sidebar a i {
+            font-size: 18px;
+            min-width: 40px;
+            text-align: center;
+        }
+        .sidebar.collapsed a span {
+            display: none;
+        }
+        .toggle-btn {
+            position: absolute;
+            left: 210px;
+            top: 15px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: left 0.3s ease;
+        }
+        .sidebar.collapsed + .toggle-btn {
+            left: 70px;
+        }
+        .main-content {
+            margin-left: 200px;
+            flex-grow: 1;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+        .sidebar.collapsed ~ .main-content {
+            margin-left: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar" id="mysidebar">
+        <header>
+            <img src="https://elixirtechne.com/img/logo.png" alt="Logo"/>
+        </header>
+        <a href="/dash"><i class="fa-solid fa-border-all"></i> <span>Dashboard</span></a>
+        <a href="/event"><i class="fa-solid fa-calendar"></i> <span>Events</span></a>
+        <a href="/project"><i class="fa-solid fa-folder"></i> <span>Projects</span></a>
+        <a href="/task"><i class="fa-solid fa-tasks"></i> <span>Tasks</span></a>
+        <a href="/note"><i class="fa-solid fa-sticky-note"></i> <span>Notes</span></a>
+        <a href="/team"><i class="fa-solid fa-users"></i> <span>Team</span></a>
+        <a href="/report"><i class="fa-solid fa-chart-bar"></i> <span>Reports</span></a>
+        <a href="/help_support"><i class="fa-solid fa-life-ring"></i> <span>Help & Support</span></a>
+        <a href="/todo"><i class="fa-solid fa-list"></i> <span>To Do</span></a>
+    </div>
+
+    <i class="fa-solid fa-bars toggle-btn" onclick="toggleSidebar()"></i>
+
+    <div class="main-content">
+        <div class="header">
+            <h2>My Dashboard</h2>
+        </div>
+        <p>Welcome to the dashboard! Here is your content.</p>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById("mysidebar").classList.toggle("collapsed");
+        }
+    </script>
+
+</body>
+</html>

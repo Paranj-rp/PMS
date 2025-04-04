@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .piechart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: conic-gradient(
+            pink 70deg,
+            lightblue 0 235deg,
+            orange 0
+            );
+        }
+</style>
+
+<div style="padding: 20px; background-color: #f5f5f5;max-height:90vh;overflow-y:auto;">
+    <!-- Stats Cards Row -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px;">
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 50%;">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <button style="background: #1976d2; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+                    Clock In
+                </button>
+            </div>
+            <p style="color: #666; margin: 10px; font-size: 14px;">You are currently clocked out</p>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="background: #fff3e0; padding: 10px; border-radius: 50%;">
+                    <i class="fa-solid fa-clipboard"></i>
+                </div>
+                <div>
+                    <h2 style="margin: 0; font-size: 24px;">10</h2>
+                    <p style="margin: 0; color: #666; font-size: 14px;">My open tasks</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="background: #e8f5e9; padding: 10px; border-radius: 50%;">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div>
+                    <h2 style="margin: 0; font-size: 24px;">0</h2>
+                    <p style="margin: 0; color: #666; font-size: 14px;">Events today</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="background: #fce4ec; padding: 10px; border-radius: 50%;">
+                    <i class="fa-solid fa-file"></i>
+                </div>
+                <div>
+                    <h2 style="margin: 0; font-size: 24px;">0</h2>
+                    <p style="margin: 0; color: #666; font-size: 14px;">New posts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects and Tasks Row -->
+    <div style=" display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px;">
+        <!-- Projects Overview -->
+        <div style="display: grid; grid-template-rows: repeat(2);gap: 20px;">
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;height:250px">
+
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;">Projects Overview</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-bottom: 20px;">
+                <div>
+                    <h4 style="margin: 0; font-size: 24px; color: #1976d2;">1</h4>
+                    <p style="margin: 5px 0; color: #666; font-size: 14px;">Open</p>
+                </div>
+                <div>
+                    <h4 style="margin: 0; font-size: 24px; color: #43a047;">0</h4>
+                    <p style="margin: 5px 0; color: #666; font-size: 14px;">Completed</p>
+                </div>
+                <div>
+                    <h4 style="margin: 0; font-size: 24px; color: #f57c00;">0</h4>
+                    <p style="margin: 5px 0; color: #666; font-size: 14px;">Hold</p>
+                </div>
+            </div>
+            <p>Progress</p>
+            <div style="height: 8px; background: #e0e0e0; border-radius: 4px;">
+                <div style="width: 66%; height: 100%; background: #1976d2; border-radius: 4px;"></div>
+            </div>
+        </div>
+            <div style="background: white;padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;height:30px;">
+
+                <i class="fa-solid fa-clock"></i> 0 Reminder Today  <i class="fa-regular fa-bell"></i> No Reminder
+            </div>
+        </div>
+
+
+        <!-- Tasks Overview -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;height:350px;">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;">All Tasks Overview</h3>
+            <div style="width: 200px; height: 200px; margin: 0 auto; position: relative;">
+                <div class="piechart"></div>
+            </div>
+        </div>
+
+        <!-- Timesheet -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;height:350px;">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;">My Timesheet</h3>
+            <div style="height: 300px; position: relative;background:lightblue">
+                <!-- You might want to replace this with an actual chart library -->
+
+<!--                <div style="width: 100%; height: 100%; background: linear-gradient(180deg, #e3f2fd 0%, white 100%);"></div>-->
+            </div>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px;">
+        <!-- Projects Overview -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;height:500px">
+            <h3 style="0 0 20px 0; font-size: 18px;">Projects Timeline</h3>
+
+        </div>
+
+        <!-- Tasks Overview -->
+        <div style="display: grid; grid-template-rows: repeat(2); gap:20px;">
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ; height:235px">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;">Events</h3>
+            <div style="display:flex;">
+                <i class="fa-regular fa-calendar"></i>
+                <p>No events found!</p>
+            </div>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ; height:200px">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;">Open Projects</h3>
+            <p>Python Interns</p>
+            <div style="height: 8px; background: #e0e0e0; border-radius: 4px;">
+                <div style="width: 66%; height: 100%; background: #1976d2; border-radius: 4px;"></div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Timesheet -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;">To Do (Private)</h3>
+            <div style="height: 100px; position: relative;"></div>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;">
+        <!-- Projects Overview -->
+        <div style="background: white;width:795px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;">
+            <h3 style="margin:20px ; font-size: 18px;">My Tasks</h3>
+
+        </div>
+        <!-- Timesheet -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px ;width:370px;">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;">Sticky Note (Private)</h3>
+            <div style="height: 200px; position: relative;">
+                <div style="width: 100%; height: 100%; background: #DEB887;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

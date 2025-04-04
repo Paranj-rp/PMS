@@ -1,0 +1,178 @@
+<style>
+    .sidebar{
+        display:flex;
+        max-height:100vh;
+        width:200px;
+        background: #f4f4f4;
+        flex-direction: column;
+        position:sticky;
+        top:0;
+        left:0;
+        border-right: 1px solid #ddd;
+        overflow: unset;
+        transition: width 0.3s ease;
+    }
+    .sidebar header{
+        position:sticky;
+        border-bottom: 1px solid #eee;  }
+        .sidebar.collapsed {
+            width: 60px;
+        }
+        .sidebar header, .sidebar img{
+            text-align: center;
+            padding: 10px;
+        }
+        .sidebar img {
+  			width: 60%;
+  			height: 40px;
+  			display:flex;
+  			border-bottom: 1px solid #eee;
+  			shrink:0;
+  			padding:5px;
+  			margin:auto;
+		}
+        .sidebar a{
+            display: flex;
+            color: Black;
+            text-decoration: none;
+            padding: 10px;
+            border-bottom: px solid #eee;
+            transition: 0.3s;
+            white-space: nowrap;
+            align-items: center;
+        }
+        .sidebar a i {
+            font-size: 18px;
+            min-width: 40px;
+            text-align: center;
+        }
+        .sidebar.collapsed a span {
+            display: none;
+        }
+        .fa-solid fa-bars {
+            position: absolute;
+            left: 250px;
+            top: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: left 0.3s ease;
+        }
+        .sidebar.collapsed + .fa-solid fa-bars {
+            left: 70px;
+        }
+        .sidebar.collapsed ~ .main-content {
+            margin-left: 0px;
+        }
+        .sidebar.collapsed img{
+            width: 80%;
+  			height: 30px;
+  			display:flex;
+  			border-bottom: 1px solid #eee;
+  			shrink:0;
+  			padding:5px;
+  			margin:auto;
+        }
+         .dropdown {
+            display: flex;
+            flex-direction: column;
+            background: #f4f4f4;
+            justify-content: center;
+        }
+    .dropdown a {
+        padding: 8px 10px;
+        font-size: 14px;
+        border-bottom: none;
+        margin-left:40px;
+    }
+    .dropdown-btn {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .dropdown-btn i.arrow {
+        transition: transform 0.3s ease;
+    }
+    .dropdown-btn.active i.arrow {
+        transform: rotate(90deg);
+    }
+    .sidebar.collapsed .dropdown {
+        display: none;
+    }
+</style>
+<div id="mySidebar" class="sidebar">
+    <!--Sidebar Header Image-->
+    <header>
+	<img id="sidebar-logo" src="https://elixirtechne.com/img/logo.png" alt="Logo"/>
+    </header>
+    <!--sidebar pages-->
+    <a href="/dash"><i class="fa-solid fa-display"></i><span>&nbsp;Dashboard</span></a>
+
+    <a href="/event"><i class="fa-solid fa-calendar"></i><span>&nbsp;Events</span></a>
+
+    <a href="/project"><i class="fa-solid fa-border-all"></i><span>&nbsp;Projects</span></a>
+
+    <a href="/task"><i class="fa-solid fa-circle-check"></i><span>&nbsp;Tasks</span></a>
+
+    <a href="/note"><i class="fa-solid fa-book"></i><span>&nbsp;Notes</span></a>
+    <!--dropdown for Team-->
+    <div class="dropdown-container">
+    <div class="dropdown-btn" onclick="toggleDropdown('team-dropdown')">
+        <a href="#"><i class="fa-solid fa-people-group"></i><span>&nbsp;Team &nbsp;&nbsp;
+        <i class="fa-solid fa-caret-down arrow"></i></span></a>
+    </div>
+    <div class="dropdown" id="team-dropdown">
+                <a href="#">- Time card</a>
+                <a href="#">- Leave</a>
+                <a href="#">- Timeline</a>
+                <a href="#">- Announcement</a>
+    </div>
+    </div>
+    <!--DropDown For Reports-->
+    <div class="dropdown-container">
+    <div class="dropdown-btn" onclick="toggleDropdown('report-dropdown')">
+        <a href="#"><i class="fa-solid fa-chart-pie"></i><span>&nbsp;Reports
+        <i class="fa-solid fa-caret-down arrow"></i></span></a>
+    </div>
+    <div class="dropdown" id="report-dropdown">
+                <a href="#">- Timesheets</a>
+
+    </div>
+    </div>
+<!--  DropDown For Help-->
+    <div class="dropdown-container">
+    <div class="dropdown-btn" onclick="toggleDropdown('help-dropdown')">
+        <a href="#"><i class="fa-solid fa-circle-question"></i><span>&nbsp;Help & Support
+        <i class="fa-solid fa-caret-down arrow"></i></span></a>
+    </div>
+    <div class="dropdown" id="help-dropdown">
+                <a href="#">- Help</a>
+                <a href="#">- Help-article </a>
+
+    </div>
+    </div>
+    <a href="/todo"><i class="fa-solid fa-clipboard-check"></i><span>&nbsp;To Do</span></a>
+</div>
+
+<script>
+    //Function for collapsed logo
+    function toggleSidebar() {
+        let sidebar = document.getElementById("mySidebar");
+        let logo = document.getElementById("sidebar-logo");
+
+        sidebar.classList.toggle("collapsed");
+
+        // Change logo based on sidebar state
+        if (sidebar.classList.contains("collapsed")) {
+            logo.src = "https://scontent.fraj1-1.fna.fbcdn.net/v/t39.30808-1/300057540_167557589157688_6269799517897762905_n.png?stp=dst-png_s200x200&_nc_cat=101&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=ueuAV2VmAqwQ7kNvgGWEN4P&_nc_oc=Adlb4tO1cj9nrsS0z5hxnMiGIY0BF41Y19DX6XwzbvZy8jr232x1gaeF0JVC9ej-AJQ&_nc_zt=24&_nc_ht=scontent.fraj1-1.fna&_nc_gid=5WBnFFFrJmPzStb8Pv8HIw&oh=00_AYF8cuy6BDITvz_HTzGgE5c_NPU-rskZAtWsiFlwCFsNEg&oe=67E98A60";
+        } else {
+            logo.src = "https://elixirtechne.com/img/logo.png";
+        }
+    }
+    //Function for Dropdown
+    function toggleDropdown(id) {
+            let dropdown = document.getElementById(id);
+            let arrow = dropdown.previousElementSibling.querySelector(".arrow");
+            dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+            arrow.classList.toggle("active");
+        }
+</script>

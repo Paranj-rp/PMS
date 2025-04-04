@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .main-content {
+            margin-left: 0px;
+<!--            flex-grow: 1;-->
+            padding: 0px;
+            transition: margin-left 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+<div style="display:flex;height:100vh;width:100%">
+    {% include 'sidebar.html' %}
+    <div class="main-content" style="display:flex;flex-direction:column;flex-grow:1;min-height:0px">
+        {% include 'header.html' %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<style>
+        .header{
+            display:flex;
+            background: white;
+            height:40px;
+            width:%;
+            position:sticky;
+            top:0;
+            justify-content: center; /* Centers the links horizontally */
+    		align-items: center; /* Centers vertically */
+    		padding: 0 5px;
+    		justify-content:space-between;
+    		border-bottom: 1px solid #eee;
+        }
+        .header i{
+            text-align:right;
+            padding: 8px;
+            color:black;
+        }
+        .header img{
+            width:4%;
+            border-radius: 8px;
+            border: 1px solid black;
+        }
+        .header-left{
+            justify-content: left;
+        }
+        .header-right{
+            justify-content: right;
+            margin-right:0;
+        }
+</style>
+<header class="header" xmlns="http://www.w3.org/1999/html">
+    <div class="header-left">
+        <i class="fa-solid fa-bars toggle-btn" id="menuToggle" onclick="toggleSidebar()"></i>
+        <i class="fa-solid fa-border-all"></i>
+        <i class="fa-regular fa-circle-check"></i>
+        <i class="fa-solid fa-display"></i>
+    </div>
+    <div class="header-right" >
+         <i class="fa fa-search"></i>
+        <i class="fa-regular fa-plus"></i>
+        <i class="fa-solid fa-globe"></i>
+        <i class="fa-regular fa-clock"></i>
+        <i class="fa-regular fa-bell"></i>
+        <i class="fa-regular fa-envelope"></i>
+        <img src="https://yt3.ggpht.com/NvEvFRdcvoNI4_KSwe96PyvlvqG9ameLa98o7oqxeP8kfOy9atzecGbaoR36cAvXtLgUP3EI=s88-c-k-c0x00ffffff-no-rj">&nbsp;
+        <span style="color: black; border-right:1px solid #eee; border-left:1px solid #eee;border-top:1px solid #eee;border-bottom:1px solid #eee;"> Paranj</span>
+    </div>
+
+</header>
