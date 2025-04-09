@@ -1,4 +1,4 @@
-<style>
+<style xmlns="http://www.w3.org/1999/html">
     .sidebar{
         display:flex;
         max-height:100vh;
@@ -41,6 +41,9 @@
             white-space: nowrap;
             align-items: center;
         }
+        .sidebar a .active-page{
+            background-color:white;
+        }
         .sidebar a i {
             font-size: 18px;
             min-width: 40px;
@@ -62,7 +65,9 @@
         }
         .sidebar.collapsed ~ .main-content {
             margin-left: 0px;
+            cursor:pointer;
         }
+
         .sidebar.collapsed img{
             width: 80%;
   			height: 30px;
@@ -72,17 +77,18 @@
   			padding:5px;
   			margin:auto;
         }
-         .dropdown {
-            display: flex;
-            flex-direction: column;
-            background: #f4f4f4;
-            justify-content: center;
-        }
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+        background: #f4f4f4;
+        justify-content: center;
+        cursor:pointer;
+    }
     .dropdown a {
         padding: 8px 10px;
         font-size: 14px;
         border-bottom: none;
-        margin-left:40px;
+        margin-left:30px;
     }
     .dropdown-btn {
         display: flex;
@@ -91,9 +97,6 @@
     }
     .dropdown-btn i.arrow {
         transition: transform 0.3s ease;
-    }
-    .dropdown-btn.active i.arrow {
-        transform: rotate(90deg);
     }
     .sidebar.collapsed .dropdown {
         display: none;
@@ -121,10 +124,11 @@
         <i class="fa-solid fa-caret-down arrow"></i></span></a>
     </div>
     <div class="dropdown" id="team-dropdown">
-                <a href="#">- Time card</a>
-                <a href="#">- Leave</a>
-                <a href="#">- Timeline</a>
-                <a href="#">- Announcement</a>
+                <a href="/team_members"><i class="fa-solid fa-user-group"></i> Team Members</a>
+                <a href="/time_card"><i class="fa-solid fa-clock"></i> Time card</a>
+                <a href="/leave"><i class="fa-solid fa-calendar-minus"></i> Leave</a>
+                <a href="/timeline"><i class="fa-solid fa-arrow-trend-up"></i> Timeline</a>
+                <a href="/announcement"><i class="fa-solid fa-volume-high"></i> Announcement</a>
     </div>
     </div>
     <!--DropDown For Reports-->
@@ -134,20 +138,18 @@
         <i class="fa-solid fa-caret-down arrow"></i></span></a>
     </div>
     <div class="dropdown" id="report-dropdown">
-                <a href="#">- Timesheets</a>
-
+        <a href="/timesheet"><i class="fa-solid fa-clock"></i> Timesheets</a>
     </div>
     </div>
 <!--  DropDown For Help-->
     <div class="dropdown-container">
     <div class="dropdown-btn" onclick="toggleDropdown('help-dropdown')">
-        <a href="#"><i class="fa-solid fa-circle-question"></i><span>&nbsp;Help & Support
+        <a href="#"> <i class="fa-solid fa-circle-question"></i><span>&nbsp;Help & Support
         <i class="fa-solid fa-caret-down arrow"></i></span></a>
     </div>
     <div class="dropdown" id="help-dropdown">
-                <a href="#">- Help</a>
-                <a href="#">- Help-article </a>
-
+                <a href="/help_support_help"><i class="fa-solid fa-minus"></i> Help</a>
+                <a href="/help_support_article"><i class="fa-solid fa-minus"></i> Help-article </a>
     </div>
     </div>
     <a href="/todo"><i class="fa-solid fa-clipboard-check"></i><span>&nbsp;To Do</span></a>
@@ -155,24 +157,48 @@
 
 <script>
     //Function for collapsed logo
+    let dropdowns = [];
+    let sidebarState = false;
     function toggleSidebar() {
-        let sidebar = document.getElementById("mySidebar");
-        let logo = document.getElementById("sidebar-logo");
-
+        const sidebar = document.getElementById("mySidebar");
+        const logo = document.getElementById("sidebar-logo");
+        sidebarState=!sidebarState;
         sidebar.classList.toggle("collapsed");
+        closeAllDropdowns();
 
         // Change logo based on sidebar state
         if (sidebar.classList.contains("collapsed")) {
-            logo.src = "https://scontent.fraj1-1.fna.fbcdn.net/v/t39.30808-1/300057540_167557589157688_6269799517897762905_n.png?stp=dst-png_s200x200&_nc_cat=101&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=ueuAV2VmAqwQ7kNvgGWEN4P&_nc_oc=Adlb4tO1cj9nrsS0z5hxnMiGIY0BF41Y19DX6XwzbvZy8jr232x1gaeF0JVC9ej-AJQ&_nc_zt=24&_nc_ht=scontent.fraj1-1.fna&_nc_gid=5WBnFFFrJmPzStb8Pv8HIw&oh=00_AYF8cuy6BDITvz_HTzGgE5c_NPU-rskZAtWsiFlwCFsNEg&oe=67E98A60";
+            logo.src = "data:image/png;base64,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";
+<!--            closeAllDropdowns();-->
         } else {
             logo.src = "https://elixirtechne.com/img/logo.png";
         }
     }
     //Function for Dropdown
     function toggleDropdown(id) {
-            let dropdown = document.getElementById(id);
-            let arrow = dropdown.previousElementSibling.querySelector(".arrow");
+            const dropdown = document.getElementById(id);
+            const arrow = dropdown.previousElementSibling.querySelector(".arrow");
+            if (!dropdowns.includes(dropdown)) {
+        dropdowns.push(dropdown);
+    }
             dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
             arrow.classList.toggle("active");
         }
+    function closeAllDropdowns() {
+    dropdowns.forEach(dropdown => {
+        dropdown.style.display = "none";
+        const arrow = dropdown.previousElementSibling.querySelector(".arrow");
+        if (arrow) {
+            arrow.classList.remove("active");
+        }
+    });
+}document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById("mySidebar");
+    sidebarState = !sidebar.classList.contains("collapsed");
+
+    // Close dropdowns on page load if sidebar is collapsed
+    if (!sidebarState) {
+        closeAllDropdowns();
+    }
+});
 </script>

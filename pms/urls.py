@@ -14,6 +14,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from tkinter.font import names
+
 from django.contrib import admin
 from django.urls import path
 from.import view
@@ -29,10 +31,18 @@ urlpatterns = [
     path('note/',view.note,name='note'),
     path('team/',view.team,name='team'),
     path('report/',view.report,name='report'),
-    path('help_support/',view.help_support,name='help_support'),
     path('collapsible_side/',view.colab,name='colab'),
     path('icons/',view.icons,name='icons'),
     path('trial/',view.trial,name='trial'),
     path('temp/',view.temp,name='temp'),
-    path('add/',view.add,name='add')
+    path('add/',view.add,name='add'),
+    path('todo/',view.todo,name='todo'),
+    path('help_support_help/',view.help_sup_help,name='help_support_help'),
+    path('help_support_article/',view.help_sup_article,name='help_support_article'),
+    path('timesheet/',view.timesheet,name='timesheets'),
+    path('team_members/',view.team_members,name='team_members'),
+    path('announcement/',view.announcement,name='announcement'),
+    path('time_card/',view.time_card,name='time_card'),
+    path('leave/',view.leave,name='leave'),
+    path('timeline/',view.timeline,name='timeline')
 ]
